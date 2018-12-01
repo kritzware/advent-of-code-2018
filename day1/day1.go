@@ -1024,9 +1024,8 @@ func SolutionPart2() {
 			if _, ok := frequencies[freq]; ok {
 				fmt.Println("First repeated frequency:", freq)
 				return
-			} else {
-				frequencies[freq] = true
 			}
+			frequencies[freq] = true
 		}
 	}
 }
