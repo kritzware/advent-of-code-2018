@@ -1012,23 +1012,21 @@ func SolutionPart1() {
 // SolutionPart2 is the solution for /2018/day/1 part2
 func SolutionPart2() {
 	frequencies := make(map[int]bool)
-	frequencies[0] = true
-	sumFrequencies(0, frequencies)
-}
-
-func sumFrequencies(freq int, frequencies map[int]bool) {
-	for _, line := range strings.Split(strings.TrimSuffix(input, "\n"), "\n") {
-		val, err := strconv.Atoi(line)
-		if err != nil {
-			panic(err)
-		}
-		freq += val
-		if _, ok := frequencies[freq]; ok {
-			fmt.Println("First repeated frequency:", freq)
-			return
-		} else {
-			frequencies[freq] = true
+	freq := 0
+	lines := strings.Split(strings.TrimSuffix(input, "\n"), "\n")
+	for {
+		for _, line := range lines {
+			val, err := strconv.Atoi(line)
+			if err != nil {
+				panic(err)
+			}
+			freq += val
+			if _, ok := frequencies[freq]; ok {
+				fmt.Println("First repeated frequency:", freq)
+				return
+			} else {
+				frequencies[freq] = true
+			}
 		}
 	}
-	sumFrequencies(freq, frequencies)
 }
